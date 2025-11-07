@@ -1,6 +1,10 @@
+import { motion } from "framer-motion";
+import BlockchainParticles from "./BlockchainParticles";
+
 export default function Benefits() {
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-background to-gray-950">
+    <section className="py-20 md:py-32 bg-gradient-to-b from-background to-gray-950 relative overflow-hidden">
+      <BlockchainParticles />
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="text-center mb-12">
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-100 mb-4" data-testid="text-benefits-title">

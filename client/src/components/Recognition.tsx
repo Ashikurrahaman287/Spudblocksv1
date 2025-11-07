@@ -3,6 +3,18 @@ import { Award } from "lucide-react";
 
 const recognitions = [
   {
+    year: "2025",
+    exchange: "Ascendex",
+    award: "Innovation Excellence",
+    description: "Outstanding Innovation Partner"
+  },
+  {
+    year: "2024",
+    exchange: "COPX",
+    award: "Strategic Partnership",
+    description: "Premier Strategic Alliance"
+  },
+  {
     year: "2023",
     exchange: "BIGONE",
     award: "Business Management",

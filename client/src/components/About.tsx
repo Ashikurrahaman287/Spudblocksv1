@@ -1,7 +1,11 @@
+import { motion } from "framer-motion";
+import BlockchainParticles from "./BlockchainParticles";
+
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="about" className="py-20 md:py-32 bg-background relative overflow-hidden">
+      <BlockchainParticles />
+      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-100 mb-4" data-testid="text-about-title">
             About Us
