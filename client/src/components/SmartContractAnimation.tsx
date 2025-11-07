@@ -1,9 +1,16 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FileCode, CheckCircle } from 'lucide-react';
+import { FileCode, CheckCircle, File } from 'lucide-react';
 
 export default function SmartContractAnimation() {
   const [executing, setExecuting] = useState(false);
+  const [activeFile, setActiveFile] = useState(0);
+
+  const files = [
+    { name: "Token.sol", color: "text-blue-400" },
+    { name: "NFT.sol", color: "text-purple-400" },
+    { name: "DeFi.sol", color: "text-green-400" },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -11,7 +18,14 @@ export default function SmartContractAnimation() {
       setTimeout(() => setExecuting(false), 3000);
     }, 5000);
 
-    return () => clearInterval(interval);
+    const fileInterval = setInterval(() => {
+      setActiveFile(prev => (prev + 1) % files.length);
+    }, 4000);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(fileInterval);
+    };
   }, []);
 
   const codeLines = [
@@ -74,43 +88,87 @@ export default function SmartContractAnimation() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Contract Code */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg p-6 font-mono text-sm relative overflow-hidden"
-          >
-            <div className="flex items-center gap-2 mb-4 text-blue-400">
-              <FileCode className="w-5 h-5" />
-              <span className="font-semibold">SmartContract.sol</span>
-            </div>
-            
-            <div className="space-y-1">
-              {codeLines.map((line, i) => (
-                <motion.div
-                  key={i}
-                  className="text-gray-300"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <span className="text-gray-600 mr-4">{i + 1}</span>
-                  {line}
-                </motion.div>
-              ))}
+          {/* Contract Code with File Animation */}
+          <div className="space-y-4">
+            {/* File Explorer */}
+            <div className="bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg p-4">
+              <div className="text-sm text-gray-400 mb-3 font-semibold">Smart Contracts</div>
+              <div className="space-y-2">
+                {files.map((file, i) => (
+                  <motion.div
+                    key={i}
+                    className={`flex items-center gap-2 p-2 rounded cursor-pointer transition-all ${
+                      activeFile === i 
+                        ? 'bg-blue-900/30 border border-blue-500/50' 
+                        : 'hover:bg-gray-800/50'
+                    }`}
+                    animate={{
+                      scale: activeFile === i ? 1.02 : 1,
+                    }}
+                  >
+                    <File className={`w-4 h-4 ${file.color}`} />
+                    <span className={`font-mono text-sm ${file.color}`}>
+                      {file.name}
+                    </span>
+                    {activeFile === i && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="ml-auto w-2 h-2 bg-green-500 rounded-full"
+                      />
+                    )}
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
-            {executing && (
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"
-                initial={{ x: '-100%' }}
-                animate={{ x: '200%' }}
-                transition={{ duration: 2 }}
-              />
-            )}
-          </motion.div>
+            {/* Code Editor */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg p-6 font-mono text-sm relative overflow-hidden"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeFile}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="flex items-center gap-2 mb-4 text-blue-400">
+                    <FileCode className="w-5 h-5" />
+                    <span className="font-semibold">{files[activeFile].name}</span>
+                  </div>
+                  
+                  <div className="space-y-1">
+                    {codeLines.map((line, i) => (
+                      <motion.div
+                        key={i}
+                        className="text-gray-300"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.05 }}
+                      >
+                        <span className="text-gray-600 mr-4">{i + 1}</span>
+                        {line}
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {executing && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"
+                  initial={{ x: '-100%' }}
+                  animate={{ x: '200%' }}
+                  transition={{ duration: 2 }}
+                />
+              )}
+            </motion.div>
+          </div>
 
           {/* Execution Flow */}
           <div className="space-y-6">

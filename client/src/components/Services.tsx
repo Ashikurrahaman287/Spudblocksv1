@@ -6,6 +6,7 @@ import { useInView } from "framer-motion";
 import BlockchainAnimation from "./BlockchainAnimation";
 import NeuralNetworkAnimation from "./NeuralNetworkAnimation";
 import BlueprintAnimation from "./BlueprintAnimation";
+import RubixBlockchain from "./RubixBlockchain";
 
 const services = [
   {
@@ -34,30 +35,18 @@ const services = [
   },
   {
     number: "05",
-    icon: HeadphonesIcon,
-    title: "Customer Support",
-    description: "Comprehensive customer service solutions to enhance client satisfaction and retention."
-  },
-  {
-    number: "06",
-    icon: Palette,
-    title: "Graphic Design",
-    description: "Creative services for NFT creation, marketing, and graphic design in the digital asset space."
-  },
-  {
-    number: "07",
     icon: Code,
     title: "Web Development",
     description: "Seamless integration of Web3 technology into intuitive web and mobile interfaces."
   },
   {
-    number: "08",
+    number: "06",
     icon: Smartphone,
     title: "dApp Development",
     description: "Custom web and mobile dApp solutions for enhanced engagement and functionality."
   },
   {
-    number: "09",
+    number: "07",
     icon: Code,
     title: "AI Development",
     description: "Advanced artificial intelligence and machine learning solutions to automate processes and enhance decision-making capabilities."
@@ -114,7 +103,7 @@ export default function Services() {
         {/* Blockchain Animation Section */}
         <div ref={blockchainRef} className="mb-20">
           <h3 className="text-3xl font-bold text-center text-gray-100 mb-8">How Blockchain Works</h3>
-          <BlockchainAnimation />
+          <RubixBlockchain />
         </div>
 
         {/* AI Neural Network Section */}

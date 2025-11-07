@@ -4,32 +4,46 @@ import { Rocket, Target, Zap, Globe, Brain, Shield } from 'lucide-react';
 
 const milestones = [
   {
-    quarter: "Q1 2026",
+    quarter: "Q3 2026",
     icon: Rocket,
+    title: "SpudPay Fintech Launch",
+    description: "Launch revolutionary SpudPay fintech platform for seamless Web3 payments",
+    status: "upcoming"
+  },
+  {
+    quarter: "Q2 2026",
+    icon: Target,
+    title: "$50M Revenue Goal",
+    description: "Achieve $50 million in annual revenue through strategic growth",
+    status: "upcoming"
+  },
+  {
+    quarter: "Q1 2026",
+    icon: Brain,
     title: "AI Integration Expansion",
     description: "Launch advanced AI-powered analytics and automation tools",
     status: "upcoming"
   },
   {
     quarter: "Q4 2025",
-    icon: Brain,
-    title: "Neural Network Services",
-    description: "Introduce machine learning consultancy services",
-    status: "upcoming"
+    icon: Shield,
+    title: "Enterprise Solutions",
+    description: "Roll out enterprise-grade Web3 solutions and partnerships",
+    status: "in-progress"
   },
   {
     quarter: "Q3 2025",
     icon: Globe,
     title: "Global Market Expansion",
     description: "Expand operations to Asian and European markets",
-    status: "in-progress"
+    status: "completed"
   },
   {
     quarter: "Q2 2025",
     icon: Zap,
     title: "Layer 2 Solutions",
     description: "Deploy scalable Layer 2 blockchain solutions",
-    status: "in-progress"
+    status: "completed"
   },
   {
     quarter: "Q1 2025",
