@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Mission from "@/components/Mission";
@@ -16,6 +17,7 @@ import Contact from "@/components/Contact";
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <Header />
       <Hero />
       <About />
       <Mission />
