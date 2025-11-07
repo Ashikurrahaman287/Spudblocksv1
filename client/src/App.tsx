@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
 import CustomCursor from "@/components/CustomCursor";
+import BackgroundBlockchain from "@/components/BackgroundBlockchain";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <BackgroundBlockchain />
         <CustomCursor />
         <Toaster />
         <Router />

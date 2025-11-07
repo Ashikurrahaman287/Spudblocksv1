@@ -55,6 +55,12 @@ const services = [
     icon: Smartphone,
     title: "dApp Development",
     description: "Custom web and mobile dApp solutions for enhanced engagement and functionality."
+  },
+  {
+    number: "09",
+    icon: Code,
+    title: "AI Development",
+    description: "Advanced artificial intelligence and machine learning solutions to automate processes and enhance decision-making capabilities."
   }
 ];
 
