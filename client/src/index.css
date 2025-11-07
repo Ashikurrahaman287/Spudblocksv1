@@ -76,8 +76,8 @@
   --chart-4: 275 75% 42%;
   --chart-5: 265 70% 45%;
 
-  --font-sans: Inter, Open Sans, sans-serif;
-  --font-serif: Georgia, serif;
+  --font-sans: Inter, sans-serif;
+  --font-serif: Sora, sans-serif;
   --font-mono: Menlo, monospace;
   --radius: .5rem; /* 8px */
   --shadow-2xs: 0px 2px 0px 0px hsl(270 91% 50% / 0.00);
