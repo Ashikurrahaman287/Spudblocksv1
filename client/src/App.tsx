@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEffect } from "react";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
+import CustomCursor from "@/components/CustomCursor";
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <CustomCursor />
         <Toaster />
         <Router />
       </TooltipProvider>

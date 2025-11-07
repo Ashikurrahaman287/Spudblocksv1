@@ -1,5 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { Blocks, TrendingUp, ClipboardList, Share2, HeadphonesIcon, Palette, Code, Smartphone } from "lucide-react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import BlockchainAnimation from "./BlockchainAnimation";
+import NeuralNetworkAnimation from "./NeuralNetworkAnimation";
+import BlueprintAnimation from "./BlueprintAnimation";
 
 const services = [
   {
@@ -53,6 +59,9 @@ const services = [
 ];
 
 export default function Services() {
+  const blockchainRef = useRef(null);
+  const isBlockchainInView = useInView(blockchainRef, { once: true, amount: 0.3 });
+
   return (
     <section id="services" className="py-20 md:py-32 bg-gradient-to-b from-background to-gray-950">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
@@ -66,27 +75,52 @@ export default function Services() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-20">
           {services.map((service, index) => (
-            <Card 
+            <motion.div
               key={index}
-              className="p-6 md:p-8 bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-purple-500 transition-all duration-300 hover-elevate"
-              data-testid={`card-service-${index}`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
             >
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-bold text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full" data-testid={`text-service-number-${index}`}>
-                  {service.number}
-                </span>
-                <service.icon className="w-8 h-8 text-purple-400" data-testid={`icon-service-${index}`} />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-100 mb-3" data-testid={`text-service-title-${index}`}>
-                {service.title}
-              </h3>
-              <p className="text-gray-400 leading-relaxed" data-testid={`text-service-description-${index}`}>
-                {service.description}
-              </p>
-            </Card>
+              <Card 
+                className="p-6 md:p-8 bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-purple-500 transition-all duration-300 hover-elevate h-full"
+                data-testid={`card-service-${index}`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm font-bold text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full" data-testid={`text-service-number-${index}`}>
+                    {service.number}
+                  </span>
+                  <service.icon className="w-8 h-8 text-purple-400" data-testid={`icon-service-${index}`} />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-100 mb-3" data-testid={`text-service-title-${index}`}>
+                  {service.title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed" data-testid={`text-service-description-${index}`}>
+                  {service.description}
+                </p>
+              </Card>
+            </motion.div>
           ))}
+        </div>
+
+        {/* Blockchain Animation Section */}
+        <div ref={blockchainRef} className="mb-20">
+          <h3 className="text-3xl font-bold text-center text-gray-100 mb-8">How Blockchain Works</h3>
+          <BlockchainAnimation />
+        </div>
+
+        {/* AI Neural Network Section */}
+        <div className="mb-20">
+          <h3 className="text-3xl font-bold text-center text-gray-100 mb-8">AI Processing Flow</h3>
+          <NeuralNetworkAnimation />
+        </div>
+
+        {/* Software Development Lifecycle */}
+        <div>
+          <h3 className="text-3xl font-bold text-center text-gray-100 mb-8">From Blueprint to Build</h3>
+          <BlueprintAnimation />
         </div>
       </div>
     </section>
