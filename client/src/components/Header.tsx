@@ -31,11 +31,6 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center space-x-2">
-              <img 
-                src="/attached_assets/Spud Blocks Only Logo Color Full_1762515808136.png" 
-                alt="Spud Blocks Logo" 
-                className="h-8 w-auto"
-              />
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                 Spud Blocks
               </span>
