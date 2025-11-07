@@ -74,7 +74,10 @@ app.use((req, res, next) => {
   server.listen({
     port,
     host: "0.0.0.0",
-    reusePort: true,
+    // `reusePort` can be unsupported on some platforms (notably Windows),
+    // which causes an `ENOTSUP` error when attempting to listen. Only set
+    // reusePort when the platform supports it.
+    ...(process.platform !== "win32" ? { reusePort: true } : {}),
   }, () => {
     log(`serving on port ${port}`);
   });
